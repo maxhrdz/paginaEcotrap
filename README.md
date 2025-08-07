@@ -1,2 +1,2 @@
-# Maximiliano Hernandez 
-#38306
+# cetys-icc-hetplat
+Code related to the Heterogenous Platforms Development course at CETYS Universidad
