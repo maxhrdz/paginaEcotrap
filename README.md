@@ -1,2 +1,2 @@
-# maxhrdz38306
-Repositorio para la escuela 
+# Maximiliano Hernandez 
+#38306
