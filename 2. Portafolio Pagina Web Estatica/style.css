@@ -1,0 +1,119 @@
+/* cuerpo */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.5;
+  margin: 0; 
+}
+
+/* contenedor principal */
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* header */
+.header {
+  background-color: #222;
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.header__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; 
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.me__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* titulos */
+.me__name {
+  font-size: 1.4rem;
+  margin: 0; 
+}
+
+.me__role {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin: 0.2rem 0 0 0;
+}
+
+/* botones/links*/
+.btn {
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  display: inline-block; 
+}
+
+.btn:hover {
+  background-color: #357ab8;
+}
+
+
+.btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* seccion*/
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+/* lista*/
+ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  padding-left: 0; 
+}
+
+ul li {
+  margin-bottom: 0.4rem;
+}
+
+/* pie*/
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #222;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+/* selector por id*/
+#about {
+  border-left: 4px solid #4a90e2;
+  padding-left: 0.75rem;
+}
