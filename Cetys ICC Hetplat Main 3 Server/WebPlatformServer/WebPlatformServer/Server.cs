@@ -13,7 +13,7 @@ namespace WebPlatformServer
     {
         private readonly int _port;
         private readonly string _rootDir;
-        private readonly Dictionary<string, string> _mounts; // prefix -> physical dir
+        private readonly Dictionary<string, string> _mounts; 
         private TcpListener? _listener;
         private CancellationTokenSource? _cts;
 
