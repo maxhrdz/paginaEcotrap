@@ -1,0 +1,12 @@
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/bin/Debug/net8.0/static/index.html
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/bin/Debug/net8.0/WebPlatformServer.deps.json
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/bin/Debug/net8.0/WebPlatformServer.dll
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/bin/Debug/net8.0/WebPlatformServer.pdb
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/WebPlatformServer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/WebPlatformServer.AssemblyInfoInputs.cache
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/WebPlatformServer.AssemblyInfo.cs
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/WebPlatformServer.csproj.CoreCompileInputs.cache
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/WebPlatformServer.dll
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/refint/WebPlatformServer.dll
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/WebPlatformServer.pdb
+/Users/maximilianohernandez/Downloads/Cetys ICC Hetplat Main 3 Server/WebPlatformServer/WebPlatformServer/obj/Debug/net8.0/ref/WebPlatformServer.dll
