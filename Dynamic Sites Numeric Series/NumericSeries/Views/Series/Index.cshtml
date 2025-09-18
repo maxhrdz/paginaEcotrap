@@ -1,0 +1,30 @@
+﻿@model NumericSeries.Models.SeriesViewModel
+@{
+    ViewData["Title"] = $"{Model.SerieName} — n={Model.N}";
+}
+
+<nav style="margin-bottom:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+    @foreach (var s in Model.NavSeries)
+    {
+        var href = Url.RouteUrl("series", new { serie = s.Key, n = 0 });
+        <a href="@href">@s.DisplayName</a>
+    }
+</nav>
+
+<h1>@Model.SerieName</h1>
+
+<p>
+    El número en la posición <strong>@Model.N</strong> de la serie <strong>@Model.SerieName</strong> es:
+</p>
+
+<p style="font-size:2rem; font-weight:700; margin:0.5rem 0 1rem 0;">
+    @Model.Value
+</p>
+
+<div style="display:flex; gap:1rem;">
+    @if (!string.IsNullOrEmpty(Model.PrevUrl))
+    {
+        <a class="btn btn-outline-secondary" href="@Model.PrevUrl">← Anterior</a>
+    }
+    <a class="btn btn-primary" href="@Model.NextUrl">Siguiente →</a>
+</div>
