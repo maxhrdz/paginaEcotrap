@@ -10,10 +10,10 @@ namespace NumericSeries.Controllers
         [HttpGet]
         public IActionResult Index(string? serie, int n)
         {
-            if (n < 0) return BadRequest("El parámetro n no puede ser negativo."); // 400
+            if (n < 0) return BadRequest("El parámetro n no puede ser negativo. ERROR 400"); // 400
 
             var s = SeriesRegistry.Get(serie);
-            if (s is null) return NotFound($"La serie '{serie}' no está soportada."); // 404
+            if (s is null) return NotFound($"La serie '{serie}' no está soportada. ERROR 404"); // 404
 
             BigInteger value = s.ValueAt(n);
 
