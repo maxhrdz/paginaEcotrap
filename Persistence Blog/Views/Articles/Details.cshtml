@@ -1,0 +1,52 @@
+﻿@model Blog.Models.ArticleDetailsViewModel
+@{
+    var a = Model.Article;
+    var comments = Model.Comments ?? Enumerable.Empty<Blog.Models.Comment>();
+    ViewData["Title"] = a.Title;
+}
+
+<a asp-action="Index" class="btn btn-link">&larr; Back</a>
+
+<article class="mt-2">
+    <h1 class="text-break">@a.Title</h1>
+    <small class="text-muted">
+        by @a.AuthorName (@a.AuthorEmail) —
+        @a.PublishedDate.ToLocalTime().ToString("yyyy-MM-dd HH:mm")
+    </small>
+    <hr />
+    <div class="fs-5 text-prewrap">@a.Content</div>
+</article>
+
+<hr />
+<h3>Comments (@comments.Count())</h3>
+
+@if (!comments.Any())
+{
+    <div class="alert alert-secondary">No comments yet.</div>
+}
+else
+{
+    <ul class="list-group mb-4">
+        @foreach (var c in comments.OrderByDescending(c => c.PublishedDate))
+        {
+            <li class="list-group-item">
+                <div class="text-prewrap">@c.Content</div>
+                <small class="text-muted d-block mt-1">
+                    @c.PublishedDate.ToLocalTime().ToString("yyyy-MM-dd HH:mm")
+                </small>
+            </li>
+        }
+    </ul>
+}
+
+<h4>Add a comment</h4>
+<form asp-action="AddComment" asp-route-articleId="@a.Id" method="post" class="mb-5">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        
+        <textarea name="Content" class="form-control" rows="3"
+                  required minlength="1" maxlength="2000"
+                  placeholder="Write your comment..."></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Post</button>
+</form>
