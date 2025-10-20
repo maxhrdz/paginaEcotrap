@@ -1,0 +1,566 @@
+import React, { useState } from 'react'
+import { 
+  Menu, 
+  X, 
+  Check, 
+  Droplet, 
+  Clock, 
+  Shield, 
+  ChevronDown, 
+  Phone, 
+  Mail, 
+  MessageCircle,
+  Settings,
+  Wrench,
+  ExternalLink
+} from 'lucide-react'
+
+// Componente del Logo personalizado
+const EcoTrapLogo = ({ className = "" }: { className?: string }) => (
+  <div className={`flex items-center ${className}`}>
+    <img 
+      src="/logo-ecotrap.png" 
+      alt="EcoTrap Logo" 
+      className="h-20 w-auto object-contain"
+    />
+  </div>
+)
+
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  const [formData, setFormData] = useState({
+    nombre: '',
+    empresa: '',
+    email: '',
+    telefono: '',
+    mensaje: ''
+  })
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Aquí se conectaría con el backend
+    console.log('Formulario enviado:', formData)
+    alert('¡Mensaje enviado correctamente! Te contactaremos pronto.')
+    setFormData({ nombre: '', empresa: '', email: '', telefono: '', mensaje: '' })
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsMenuOpen(false)
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-white shadow-md z-50">
+        <div className="container mx-auto px-4 py-2">
+          <div className="flex items-center justify-between">
+            <EcoTrapLogo />
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              <button 
+                onClick={() => scrollToSection('inicio')}
+                className="text-gray-700 hover:text-primary-500 transition-colors"
+              >
+                Inicio
+              </button>
+              <button 
+                onClick={() => scrollToSection('catalogo')}
+                className="text-gray-700 hover:text-primary-500 transition-colors"
+              >
+                Catálogo
+              </button>
+              <button 
+                onClick={() => scrollToSection('contacto')}
+                className="text-gray-700 hover:text-primary-500 transition-colors"
+              >
+                Contacto
+              </button>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={toggleMenu}
+              className="md:hidden p-2"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <nav className="md:hidden mt-4 pb-4 border-t border-gray-200">
+              <div className="flex flex-col space-y-2 pt-4">
+                <button 
+                  onClick={() => scrollToSection('inicio')}
+                  className="text-left py-2 text-gray-700 hover:text-primary-500 transition-colors"
+                >
+                  Inicio
+                </button>
+                <button 
+                  onClick={() => scrollToSection('catalogo')}
+                  className="text-left py-2 text-gray-700 hover:text-primary-500 transition-colors"
+                >
+                  Catálogo
+                </button>
+                <button 
+                  onClick={() => scrollToSection('contacto')}
+                  className="text-left py-2 text-gray-700 hover:text-primary-500 transition-colors"
+                >
+                  Contacto
+                </button>
+              </div>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section id="inicio" className="pt-16 bg-primary-gradient min-h-screen flex items-center">
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Trampas de grasa confiables para tu negocio
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+              Soluciones industriales de alta calidad que garantizan cumplimiento sanitario y eficiencia
+            </p>
+            <button 
+              onClick={() => scrollToSection('contacto')}
+              className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+            >
+              Cotizar ahora
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 bg-light-gray">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-secondary-800 mb-12">
+            ¿Por qué elegir EcoTraps?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-white rounded-lg shadow-md">
+              <div className="w-16 h-16 bg-primary-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Cumplimiento sanitario</h3>
+              <p className="text-gray-600">
+                Cumplimos con todas las normativas sanitarias vigentes, garantizando la seguridad y calidad de tu establecimiento.
+              </p>
+            </div>
+            <div className="text-center p-6 bg-white rounded-lg shadow-md">
+              <div className="w-16 h-16 bg-primary-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Instalación rápida</h3>
+              <p className="text-gray-600">
+                Nuestro equipo técnico especializado realiza instalaciones eficientes con mínima interrupción de tu operación.
+              </p>
+            </div>
+            <div className="text-center p-6 bg-white rounded-lg shadow-md">
+              <div className="w-16 h-16 bg-primary-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Mantenimiento fácil</h3>
+              <p className="text-gray-600">
+                Diseño intuitivo que facilita el mantenimiento regular, reduciendo costos operativos a largo plazo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Catalog Section */}
+      <section id="catalogo" className="py-16 bg-primary-gradient">
+        <div className="container mx-auto px-4 text-center">
+          <div className="mb-8">
+            <Droplet className="w-16 h-16 text-white mx-auto mb-4" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Catálogo de Productos
+          </h2>
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            Descubre nuestra amplia gama de trampas de grasa industriales. Encuentra la solución perfecta para las necesidades específicas de tu negocio.
+          </p>
+          <a
+            href="/catalogo-ecotraps.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+          >
+            <span>Ver Catálogo de Productos</span>
+            <ExternalLink className="w-5 h-5" />
+          </a>
+          <p className="text-white mt-4 text-sm">
+            Explora especificaciones técnicas, capacidades y modelos disponibles
+          </p>
+        </div>
+      </section>
+
+      {/* How it Works Section */}
+      <section className="py-16 bg-light-gray">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-secondary-800 mb-12">
+            ¿Cómo funciona?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-xl font-bold">1</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Separación</h3>
+              <p className="text-gray-600">
+                El agua residual ingresa a la trampa donde las grasas se separan naturalmente por diferencia de densidad.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-xl font-bold">2</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Retención</h3>
+              <p className="text-gray-600">
+                Las grasas quedan retenidas en la parte superior mientras el agua limpia continúa su flujo hacia el drenaje.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-xl font-bold">3</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Mantenimiento</h3>
+              <p className="text-gray-600">
+                Limpieza periódica de las grasas acumuladas para mantener la eficiencia del sistema.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16 bg-light-gray">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-secondary-800 mb-4">
+            Nuestros Servicios
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Ofrecemos servicios profesionales integrales para garantizar el óptimo funcionamiento de tu sistema
+          </p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white rounded-lg shadow-md p-8">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Settings className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-secondary-800 mb-4 text-center">
+                Instalación
+              </h3>
+              <p className="text-gray-600 text-center">
+                Nuestro equipo técnico especializado se encarga de la instalación completa de tu trampa de grasa. Realizamos un análisis previo del espacio, garantizamos una instalación profesional según normativas vigentes y minimizamos la interrupción de tus operaciones. Incluye pruebas de funcionamiento y capacitación básica para tu personal.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-8">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Wrench className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-secondary-800 mb-4 text-center">
+                Mantenimiento
+              </h3>
+              <p className="text-gray-600 text-center">
+                Programa de mantenimiento preventivo y correctivo diseñado para maximizar la vida útil de tu equipo. Ofrecemos limpieza programada, inspección técnica, reemplazo de componentes cuando sea necesario, y asesoría para optimizar el rendimiento. Planes flexibles adaptados al volumen de uso de tu establecimiento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-light-gray">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-secondary-800 mb-12">
+            Preguntas Frecuentes
+          </h2>
+          <div className="max-w-3xl mx-auto space-y-4">
+            <div className="bg-white rounded-lg shadow-md">
+              <button 
+                onClick={() => toggleFAQ(0)}
+                className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+              >
+                <span className="font-semibold">¿Cada cuánto debo limpiar mi trampa de grasa?</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${openFAQ === 0 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFAQ === 0 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    La frecuencia de limpieza depende del volumen de uso. Para restaurantes pequeños recomendamos cada 3 meses, 
+                    mientras que para establecimientos de alto volumen puede ser mensual. Nuestro equipo puede ayudarte a determinar 
+                    el cronograma ideal según tu operación.
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="bg-white rounded-lg shadow-md">
+              <button 
+                onClick={() => toggleFAQ(1)}
+                className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+              >
+                <span className="font-semibold">¿Qué capacidad necesito para mi establecimiento?</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${openFAQ === 1 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFAQ === 1 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    La capacidad depende del número de platos servidos diariamente y el tipo de cocina. 
+                    Para cafeterías pequeñas (hasta 50 platos/día) recomendamos 50 litros, 
+                    para restaurantes medianos (50-200 platos/día) 100 litros, 
+                    y para cocinas industriales (más de 200 platos/día) 200+ litros.
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="bg-white rounded-lg shadow-md">
+              <button 
+                onClick={() => toggleFAQ(2)}
+                className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+              >
+                <span className="font-semibold">¿Ofrecen servicio de instalación?</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${openFAQ === 2 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFAQ === 2 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    Sí, contamos con un equipo técnico especializado que realiza la instalación completa, 
+                    incluyendo conexiones, pruebas de funcionamiento y capacitación del personal. 
+                    También ofrecemos servicio de mantenimiento preventivo y correctivo.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-secondary-gradient">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            ¿Listo para mejorar tu sistema de gestión de grasas?
+          </h2>
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            Obtén una cotización personalizada sin compromiso
+          </p>
+          <button 
+            onClick={() => scrollToSection('contacto')}
+            className="bg-white text-secondary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+          >
+            Solicitar cotización
+          </button>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contacto" className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-secondary-800 mb-12">
+            Contáctanos
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">
+                    Nombre *
+                  </label>
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    placeholder="Tu nombre completo"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-2">
+                    Empresa
+                  </label>
+                  <input
+                    type="text"
+                    id="empresa"
+                    name="empresa"
+                    value={formData.empresa}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    placeholder="Nombre de tu empresa"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-2">
+                    Teléfono
+                  </label>
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    value={formData.telefono}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    placeholder="+56 9 1234 5678"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 mb-2">
+                    Mensaje *
+                  </label>
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    value={formData.mensaje}
+                    onChange={handleInputChange}
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    placeholder="Cuéntanos sobre tu proyecto..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary-gradient text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                >
+                  Enviar mensaje
+                </button>
+              </form>
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div className="flex items-start space-x-4">
+                <Phone className="w-6 h-6 text-primary-500 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Teléfono</h3>
+                  <p className="text-gray-600">+56 9 1234 5678</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <Mail className="w-6 h-6 text-primary-500 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Email</h3>
+                  <p className="text-gray-600">contacto@ecotraps.cl</p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-secondary-800 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <p className="text-gray-300">
+                Soluciones profesionales para la gestión eficiente de grasas en tu establecimiento.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Enlaces rápidos</h3>
+              <div className="space-y-2">
+                <button 
+                  onClick={() => scrollToSection('inicio')}
+                  className="block text-gray-300 hover:text-white transition-colors"
+                >
+                  Inicio
+                </button>
+                <button 
+                  onClick={() => scrollToSection('catalogo')}
+                  className="block text-gray-300 hover:text-white transition-colors"
+                >
+                  Catálogo
+                </button>
+                <button 
+                  onClick={() => scrollToSection('contacto')}
+                  className="block text-gray-300 hover:text-white transition-colors"
+                >
+                  Contacto
+                </button>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Síguenos</h3>
+              {/* Facebook link updated - Refresh browser to see changes */}
+              <div className="flex space-x-4">
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61582477623307"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg"
+                  title="Síguenos en Facebook"
+                >
+                  <span className="text-lg font-bold text-white">f</span>
+                </a>
+                <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center hover:bg-gray-500 transition-colors cursor-pointer">
+                  <span className="text-sm font-bold">in</span>
+                </div>
+                <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center hover:bg-gray-500 transition-colors cursor-pointer">
+                  <span className="text-sm font-bold">ig</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-600 pt-8 text-center text-gray-300">
+            <p>© 2025 EcoTraps. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* WhatsApp Floating Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <a
+          href="https://wa.me/56912345678"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-whatsapp text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center space-x-2"
+        >
+          <MessageCircle className="w-6 h-6" />
+          <span className="hidden sm:block font-semibold">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  )
+}
+
+export default App
