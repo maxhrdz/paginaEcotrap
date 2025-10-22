@@ -15,7 +15,7 @@ import {
   ExternalLink
 } from 'lucide-react'
 
-// Componente del Logo personalizado
+// compo
 const EcoTrapLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center ${className}`}>
     <img 
